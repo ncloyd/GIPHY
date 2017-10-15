@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nicole's Gifs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="buttons"></div>
+    <div class="gifs"></div>
+    <script type="text/javascript">
+    //array of gif topics
+    var topics = ["apple", "Game of Thrones"];
+
+    //display all items in topics array as buttons
+
+    function displaybtn() {
+
+        $("#buttons").empty();
+
+        for (var i = 0; i < topics.length; i++) {
+
+            var a = $("<button>");
+            a.addClass("topic");
+            a.attr("data-name", topics[i]);
+            a.text(topics[i]);
+            $("#buttons").append(a);
+        }
+    }
+
+    displaybtn();
+
+
+    // function to call on the appropriate gif to appear
+    // function displaygif() {
+	$("#buttons").on("click", function() {
+
+        var topic = $(this).attr("data-name");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=TzcfkrW6fe8k4hoyLrvT4LmOMLeFibbe&limit=5";
+
+
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function(response) {
+
+
+            var imageUrl = response.data.image_original_url;
+            var Image = $("<img>");
+
+            Image.attr("src", imageUrl);
+            Image.attr("alt", "images");
+
+            $(".gifs").prepend(Image);
+        });
+    });
+
+    //add click event to call the display gif function
+    // $(document).on("click", ".gifs", displaygif);
+
+   
+    </script>
+</body>
+
+</html>
