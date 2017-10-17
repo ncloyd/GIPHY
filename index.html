@@ -11,13 +11,9 @@
     <div class="gifs"></div>
     <script type="text/javascript">
     //array of gif topics
-    var topics = ["apple", "Game of Thrones"];
+    var topics = ["Spice World", "Game of Thrones", "pizza", "owls", "mulan", "Orange is the New Black", "cats", ""];
 
-    //display all items in topics array as buttons
 
-    function displaybtn() {
-
-        $("#buttons").empty();
 
         for (var i = 0; i < topics.length; i++) {
 
@@ -27,18 +23,28 @@
             a.text(topics[i]);
             $("#buttons").append(a);
         }
-    }
 
-    displaybtn();
+
+    //display all items in topics array as buttons
+    // function displaybtn() {
+    //     $("#buttons").empty();
+    // }
+    // displaybtn();
 
 
     // function to call on the appropriate gif to appear
     // function displaygif() {
-	$("#buttons").on("click", function() {
+	// $("#buttons").on("click", function() {
 
-        var topic = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=TzcfkrW6fe8k4hoyLrvT4LmOMLeFibbe&limit=5";
+        $('body').on("click", ".topic", function() {
 
+        var topic = $(this).data("name");
+        console.log(topic);
+
+
+        // var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=TzcfkrW6fe8k4hoyLrvT4LmOMLeFibbe&limit=5";
+      
+      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + topic;
 
 
         $.ajax({
