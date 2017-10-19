@@ -4,17 +4,22 @@
 <head>
     <title>Nicole's Gifs</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
     <div id="buttons"></div>
     <div class="gifs"></div>
     <script type="text/javascript">
+    
     //array of gif topics
-    var topics = ["Spice World", "Game of Thrones", "pizza", "owls", "mulan", "Orange is the New Black", "cats", ""];
+    var topics = ["Spice World", "Game of Thrones", "Pizza", "Owls", "", "Orange is the New Black", "Cats", "Puppies", "90s"];
 
 
-
+    //for loop for creating buttons to display all items in topics array as buttons
+        //add class
+        //add data attribute
+        //add to buttons div
         for (var i = 0; i < topics.length; i++) {
 
             var a = $("<button>");
@@ -24,27 +29,22 @@
             $("#buttons").append(a);
         }
 
-
-    //display all items in topics array as buttons
-    // function displaybtn() {
-    //     $("#buttons").empty();
-    // }
-    // displaybtn();
-
-
-    // function to call on the appropriate gif to appear
-    // function displaygif() {
-	// $("#buttons").on("click", function() {
-
+    //
         $('body').on("click", ".topic", function() {
 
         var topic = $(this).data("name");
         console.log(topic);
 
 
-        // var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=TzcfkrW6fe8k4hoyLrvT4LmOMLeFibbe&limit=5";
-      
-      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + topic;
+        // var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=TzcfkrW6fe8k4hoyLrvT4LmOMLeFibbe&limit=1";
+
+         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        topic + "&api_key=TzcfkrW6fe8k4hoyLrvT4LmOMLeFibbe&limit=1";
+
+      // var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + topic;
+
+      // var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=TzcfkrW6fe8k4hoyLrvT4LmOMLeFibbe&tag=" + topic;
+
 
 
         $.ajax({
