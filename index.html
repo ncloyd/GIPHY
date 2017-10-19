@@ -3,71 +3,25 @@
 
 <head>
     <title>Nicole's Gifs</title>
+     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
 </head>
 
 <body>
     <div id="buttons"></div>
-    <div class="gifs"></div>
-    <script type="text/javascript">
-    
-    //array of gif topics
-    var topics = ["Spice World", "Game of Thrones", "Pizza", "Owls", "", "Orange is the New Black", "Cats", "Puppies", "90s"];
-
-
-    //for loop for creating buttons to display all items in topics array as buttons
-        //add class
-        //add data attribute
-        //add to buttons div
-        for (var i = 0; i < topics.length; i++) {
-
-            var a = $("<button>");
-            a.addClass("topic");
-            a.attr("data-name", topics[i]);
-            a.text(topics[i]);
-            $("#buttons").append(a);
-        }
-
-    //
-        $('body').on("click", ".topic", function() {
-
-        var topic = $(this).data("name");
-        console.log(topic);
-
-
-        // var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=TzcfkrW6fe8k4hoyLrvT4LmOMLeFibbe&limit=1";
-
-         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        topic + "&api_key=TzcfkrW6fe8k4hoyLrvT4LmOMLeFibbe&limit=1";
-
-      // var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + topic;
-
-      // var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=TzcfkrW6fe8k4hoyLrvT4LmOMLeFibbe&tag=" + topic;
-
-
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).done(function(response) {
-
-
-            var imageUrl = response.data.image_original_url;
-            var Image = $("<img>");
-
-            Image.attr("src", imageUrl);
-            Image.attr("alt", "images");
-
-            $(".gifs").prepend(Image);
-        });
-    });
-
-    //add click event to call the display gif function
-    // $(document).on("click", ".gifs", displaygif);
-
-   
-    </script>
+ 
+    <form id="topic-form">
+        <label for="topic-input">Add a Topic!</label>
+        <input type="text" id="topic-input">
+        <br>
+ 
+        <input id="add-topic" type="submit" value="Topic Search">
+    </form>
+  <script type='text/javascript', language='javascript', src="app.js"></script>
+     <div class="gifs"></div>
 </body>
 
 </html>
